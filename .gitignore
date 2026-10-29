@@ -1,0 +1,5 @@
+# Archivos comprimidos y temporales
+*.zip
+powego.zip
+.DS_Store
+Thumbs.db

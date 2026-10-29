@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PowerGo - Plataforma moderna e inteligente para el alquiler y gestión de cargadores portátiles (power banks) en centros comerciales y universidades.">
+    <title>PowerGo - Energía cuando la necesites</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="img/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
+    <!-- Custom CSS (External Files & Embedded Fallback) -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+/* style.css - PowerGo Custom Premium Design System (High Contrast & Landing Page Optimized) */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-dark: #080c14;
+    --bg-card: rgba(20, 28, 45, 0.85);
+    --border-glass: rgba(255, 255, 255, 0.12);
+    --border-glass-active: rgba(16, 185, 129, 0.5);
+    --primary: #10b981;
+    --primary-glow: rgba(16, 185, 129, 0.25);
+    --primary-dark: #059669;
+    --accent: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.25);
+    
+    /* High Contrast Text Colors */
+    --text-main: #ffffff;
+    --text-body: #e2e8f0;
+    --text-muted: #cbd5e1;
+    --text-muted-dark: #94a3b8;
+    
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(59, 130, 246, 0.08) 0%, transparent 45%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 5px;
+    border: 2px solid var(--bg-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    transition: var(--transition-smooth);
+    color: var(--text-main);
+}
+.glass-panel:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.55);
+}
+.glass-panel.panel-active {
+    border-color: var(--border-glass-active);
+    box-shadow: 0 0 25px var(--primary-glow);
+}
+
+.glass-nav {
+    background: rgba(8, 12, 20, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    transition: var(--transition-smooth);
+}
+
+/* Typography & Headers */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+}
+.text-muted-custom {
+    color: var(--text-muted) !important;
+}
+.gradient-text {
+    background: linear-gradient(135deg, #ffffff 40%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.gradient-text-accent {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Section transitions */
+.app-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.app-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom Buttons */
+.btn-primary-custom {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff !important;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.75rem;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    filter: brightness(1.1);
+}
+.btn-primary-custom:active {
+    transform: translateY(0);
+}
+
+.btn-secondary-custom {
+    background: rgba(30, 41, 59, 0.7);
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    padding: 0.75rem 1.75rem;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+}
+.btn-secondary-custom:hover {
+    background: rgba(51, 65, 85, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Inputs and Forms */
+.form-control-custom {
+    background: rgba(15, 23, 42, 0.9) !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    padding: 0.8rem 1.2rem !important;
+    transition: var(--transition-smooth) !important;
+}
+.form-control-custom:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 12px var(--primary-glow) !important;
+    outline: none !important;
+}
+.form-control-custom::placeholder {
+    color: var(--text-muted-dark);
+}
+
+.form-label-custom {
+    color: var(--text-main) !important;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Cards & Lists */
+.card-station {
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: var(--transition-smooth);
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+}
+.card-station:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Pricing Card style */
+.pricing-card {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+.pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+}
+.pricing-card.featured {
+    border-color: var(--primary);
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(17, 24, 39, 0.85) 100%);
+    box-shadow: 0 4px 25px rgba(16, 185, 129, 0.15);
+}
+
+/* Badges */
+.badge-energy {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    font-weight: 700;
+    padding: 0.5em 0.9em;
+    border-radius: 6px;
+}
+
+.badge-info-custom {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    font-weight: 700;
+    padding: 0.5em 0.9em;
+    border-radius: 6px;
+}
+
+/* Animated Battery */
+.battery-icon-animated {
+    width: 50px;
+    height: 90px;
+    border: 3.5px solid #cbd5e1;
+    border-radius: 8px;
+    position: relative;
+    padding: 3px;
+    margin: 0 auto;
+}
+.battery-icon-animated::after {
+    content: '';
+    width: 22px;
+    height: 7px;
+    background: #cbd5e1;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px 3px 0 0;
+}
+.battery-level {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, #10b981, #34d399);
+    border-radius: 4px;
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+    animation: battery-charge 2.5s infinite ease-in-out;
+}
+
+/* Navigation Map Flow HUD */
+.flowchart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+.flowchart-node {
+    padding: 0.6rem 1.2rem;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+    min-width: 120px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+.flowchart-node:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+.flowchart-node.active-node {
+    border-color: var(--primary);
+    background: var(--primary-glow);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+.flowchart-arrow {
+    color: var(--text-muted-dark);
+    font-size: 1.1rem;
+}
+
+/* Toast Overwrite */
+.toast-custom {
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid var(--border-glass-active) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    color: #ffffff !important;
+}
+
+/* Text highlight */
+.highlight-text {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* Footer links style */
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+.footer-link:hover {
+    color: var(--primary);
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark glass-nav sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="javascript:void(0)" onclick="scrollToSection('hero')">
+                <img src="img/logo.svg" alt="PowerGo Logo" style="height: 48px;" class="me-2" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <span style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="280" height="48" style="max-height: 48px;">
+  <defs>
+    <linearGradient id="logo-bg-fallback" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="green-glow-fallback" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+  <rect width="280" height="60" rx="12" fill="url(#logo-bg-fallback)" stroke="rgba(16,185,129,0.3)" stroke-width="1.5"/>
+  <g transform="translate(14, 10)">
+    <rect x="2" y="6" width="24" height="28" rx="5" fill="none" stroke="#64748b" stroke-width="2.5"/>
+    <path d="M26 15C27.5 15 28.5 16 28.5 17.5V22.5C28.5 24 27.5 25 26 25" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+    <path d="M16 8L8 20H15L13 32L21 20H14L16 8Z" fill="url(#green-glow-fallback)"/>
+  </g>
+  <text x="58" y="33" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="24" fill="#ffffff" letter-spacing="-0.5">
+    Power<tspan fill="#10b981">Go</tspan>
+  </text>
+  <text x="58" y="47" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="8.5" fill="#94a3b8" letter-spacing="1.5">
+    RED DE ENERGÍA MÓVIL
+  </text>
+</svg></span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center" id="nav-landing">
+                    <li class="nav-item">
+                        <a class="nav-link px-3 text-white fw-600" href="javascript:void(0)" onclick="scrollToSection('hero')">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 text-white fw-600" href="javascript:void(0)" onclick="scrollToSection('quienes-somos')">Quiénes Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 text-white fw-600" href="javascript:void(0)" onclick="scrollToSection('como-funciona')">Cómo Funciona</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 text-white fw-600" href="javascript:void(0)" onclick="scrollToSection('planes')">Planes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 text-white fw-600" href="javascript:void(0)" onclick="scrollToSection('estaciones-live')">Estaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 text-white fw-600" href="javascript:void(0)" onclick="scrollToSection('contacto')">Contacto</a>
+                    </li>
+                    
+                    <!-- Divider -->
+                    <li class="nav-item px-2 d-none d-lg-block">
+                        <span class="text-secondary border-end h-100" style="opacity: 0.3;">&nbsp;</span>
+                    </li>
+                    
+                    <!-- Auth Actions -->
+                    <li class="nav-item" id="btn-login-container">
+                        <a class="nav-link px-3 text-success fw-700" href="javascript:void(0)" onclick="showAuthView('login')">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item" id="btn-register-container">
+                        <a class="btn btn-primary-custom" href="javascript:void(0)" onclick="showAuthView('registro')">Registrarse</a>
+                    </li>
+                    
+                    <!-- Logged User Status -->
+                    <li class="nav-item d-none" id="btn-user-container">
+                        <a class="btn btn-primary-custom" href="#" onclick="showAppDashboard()">
+                            <i class="bi bi-grid-fill me-1"></i>Mi Panel
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Interactive Navigation Map HUD -->
+    <div class="container mt-3">
+        <div class="glass-panel p-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="mb-2 mb-md-0">
+                    <span class="badge bg-secondary bg-opacity-30 text-success border border-success border-opacity-30 py-2 px-3 fw-700">
+                        <i class="bi bi-compass-fill me-2"></i>Mapa de Navegación Activo
+                    </span>
+                </div>
+                <div class="flowchart-container p-0 m-0 bg-transparent flex-grow-1 justify-content-md-end">
+                    <div class="flowchart-node active-node" id="node-inicio" onclick="scrollToSection('hero')">Inicio</div>
+                    <div class="flowchart-arrow"><i class="bi bi-chevron-right"></i></div>
+                    <div class="flowchart-node" id="node-auth" onclick="showAuthView('login')">Autenticación</div>
+                    <div class="flowchart-arrow"><i class="bi bi-chevron-right"></i></div>
+                    <div class="flowchart-node" id="node-dashboard" onclick="showAppDashboard()">Panel Principal</div>
+                    <div class="flowchart-arrow"><i class="bi bi-chevron-right"></i></div>
+                    <div class="flowchart-node" id="node-features" onclick="scrollToSection('estaciones-live')">Estaciones</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CORPORATE LANDING PAGE -->
+    <div id="landing-page-container">
+        
+        <!-- SECTION 1: HERO -->
+        <section id="hero" class="py-5 my-md-5">
+            <div class="container">
+                <div class="row align-items-center gy-5">
+                    <div class="col-lg-7">
+                        <span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-30 py-2 px-3 mb-4 rounded-pill fw-700 fs-6">
+                            <i class="bi bi-cpu-fill me-2"></i>Red de Energía Portátil Inteligente
+                        </span>
+                        <h1 class="display-3 fw-800 mb-3 text-white">Energía al instante,<br><span class="gradient-text-accent">donde la necesites</span></h1>
+                        <p class="lead text-white-50 mb-5 col-lg-10 fs-5" style="line-height: 1.6;">
+                            PowerGo soluciona el problema de quedarte sin batería en la calle. Nuestra red inteligente te permite alquilar cargadores portátiles y devolverlos en cualquiera de nuestras estaciones ubicadas en centros comerciales y universidades.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <button class="btn btn-primary-custom btn-lg px-4 py-3" onclick="scrollToSection('estaciones-live')">
+                                <i class="bi bi-geo-alt-fill me-2"></i>Encontrar Estación
+                            </button>
+                            <button class="btn btn-secondary-custom btn-lg px-4 py-3" onclick="scrollToSection('quienes-somos')">
+                                <i class="bi bi-info-circle me-2"></i>Saber Más
+                            </button>
+                        </div>
+                        
+                        <!-- Assignment Credits -->
+                        <div class="mt-5 p-3 glass-panel d-inline-block border border-success border-opacity-20">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-success bg-opacity-20 rounded p-2 me-3">
+                                    <i class="bi bi-mortarboard-fill text-success fs-4"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-700 text-white">Proyecto Académico SENA</div>
+                                    <div class="text-white-50 small">Santiago Aristizabal Escobar • Ficha 3336153</div>
+                                    <div class="text-success small fw-600">Tecnología en Análisis y Desarrollo de Software</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-5">
+                        <div class="hero-image-container py-4">
+                            <div class="hero-circle-dec"></div>
+                            <div class="glass-panel p-5 text-center position-relative panel-active" style="width: 320px;">
+                                <div class="battery-icon-animated mb-4">
+                                    <div class="battery-level"></div>
+                                </div>
+                                <h3 class="fw-800 text-white mb-2">PowerGo Station</h3>
+                                <p class="text-success fw-700 mb-4"><i class="bi bi-check-circle-fill me-1"></i>Listo para dispensar</p>
+                                
+                                <div class="p-3 bg-dark bg-opacity-50 rounded-3 border border-secondary border-opacity-30 mb-3">
+                                    <div class="row text-center">
+                                        <div class="col-6 border-end border-secondary border-opacity-30">
+                                            <div class="text-white-50 small">Disponibles</div>
+                                            <div class="fs-4 fw-800 text-white" id="home-total-banks">23</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="text-white-50 small">Estaciones</div>
+                                            <div class="fs-4 fw-800 text-white" id="home-total-stations">2</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="small text-white-50"><i class="bi bi-clock me-1"></i>Servicio disponible 24/7</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: QUIÉNES SOMOS -->
+        <section id="quienes-somos" class="py-5 bg-black bg-opacity-30">
+            <div class="container py-4">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-800 text-white">¿Quiénes Somos?</h2>
+                    <div class="bg-success mx-auto my-2" style="width: 60px; height: 3px;"></div>
+                    <p class="text-white-50 col-md-8 mx-auto fs-5 mt-3">
+                        Somos una empresa tecnológica colombiana comprometida con mantener a las personas conectadas en un mundo cada vez más digital e inmediato.
+                    </p>
+                </div>
+                
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="glass-panel p-4 p-md-5 border border-success border-opacity-10">
+                            <h3 class="fw-700 text-success mb-3"><i class="bi bi-bullseye me-2"></i>Nuestra Misión</h3>
+                            <p class="text-white fs-5 mb-4" style="line-height: 1.7;">
+                                Brindar soluciones de energía portátil accesibles y eficientes en espacios públicos, eliminando la ansiedad por batería baja y facilitando la movilidad continua de nuestros usuarios a través de una red ecológica y automatizada.
+                            </p>
+                            
+                            <h3 class="fw-700 text-info mb-3"><i class="bi bi-eye me-2"></i>Nuestra Visión</h3>
+                            <p class="text-white fs-5 mb-0" style="line-height: 1.7;">
+                                Para el 2030, seremos la red de carga portátil líder en América Latina, estando presentes en las principales ciudades, aeropuertos, sistemas de transporte y centros de educación con estaciones inteligentes auto-sostenibles.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="row g-4">
+                            <div class="col-sm-6">
+                                <div class="glass-panel p-4 h-100">
+                                    <h4 class="text-white mb-2"><i class="bi bi-people-fill text-success me-2"></i>Colaborativo</h4>
+                                    <p class="text-white-50 mb-0 small">Fomentamos la economía compartida, donde devuelves el cargador donde termines tu recorrido.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="glass-panel p-4 h-100">
+                                    <h4 class="text-white mb-2"><i class="bi bi-shield-check text-success me-2"></i>Seguridad</h4>
+                                    <p class="text-white-50 mb-0 small">Nuestros cargadores portátiles cuentan con tecnologías anti-cortocircuito y cuidan la vida útil de tu teléfono.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="glass-panel p-4 h-100">
+                                    <h4 class="text-white mb-2"><i class="bi bi-tree-fill text-success me-2"></i>Ecológico</h4>
+                                    <p class="text-white-50 mb-0 small">Centralizamos la carga de baterías de manera eficiente para reducir el desperdicio electrónico.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="glass-panel p-4 h-100">
+                                    <h4 class="text-white mb-2"><i class="bi bi-speedometer text-success me-2"></i>Inmediatez</h4>
+                                    <p class="text-white-50 mb-0 small">Proceso rápido: escanea, retira tu batería en menos de 10 segundos y sigue con tu día.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CÓMO FUNCIONA -->
+        <section id="como-funciona" class="py-5">
+            <div class="container py-4">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-800 text-white">¿Cómo Funciona?</h2>
+                    <div class="bg-success mx-auto my-2" style="width: 60px; height: 3px;"></div>
+                    <p class="text-white-50 col-md-8 mx-auto fs-5 mt-3">Alquilar energía con PowerGo es tan fácil como dar cuatro pasos en la pantalla.</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="glass-panel p-4 h-100 text-center">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-20 text-success rounded-circle p-3 mb-3" style="width: 70px; height: 70px;">
+                                <i class="bi bi-geo-alt-fill fs-3"></i>
+                            </div>
+                            <h4 class="text-white fw-700">1. Ubica</h4>
+                            <p class="text-white-50 small mb-0">Busca la estación física más cercana en nuestro mapa interactivo en vivo.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-panel p-4 h-100 text-center">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-20 text-success rounded-circle p-3 mb-3" style="width: 70px; height: 70px;">
+                                <i class="bi bi-qr-code fs-3"></i>
+                            </div>
+                            <h4 class="text-white fw-700">2. Escanea</h4>
+                            <p class="text-white-50 small mb-0">Solicita el préstamo de cargador desde la aplicación del usuario.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-panel p-4 h-100 text-center">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-20 text-success rounded-circle p-3 mb-3" style="width: 70px; height: 70px;">
+                                <i class="bi bi-lightning-charge-fill fs-3"></i>
+                            </div>
+                            <h4 class="text-white fw-700">3. Carga</h4>
+                            <p class="text-white-50 small mb-0">Retira el cargador y úsalo mientras te desplazas con total comodidad.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-panel p-4 h-100 text-center">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-20 text-success rounded-circle p-3 mb-3" style="width: 70px; height: 70px;">
+                                <i class="bi bi-arrow-left-right fs-3"></i>
+                            </div>
+                            <h4 class="text-white fw-700">4. Devuelve</h4>
+                            <p class="text-white-50 small mb-0">Inserta la batería vacía en cualquier slot de otra estación y finaliza el alquiler.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PLANES Y TARIFAS -->
+        <section id="planes" class="py-5 bg-black bg-opacity-30">
+            <div class="container py-4">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-800 text-white">Planes y Tarifas</h2>
+                    <div class="bg-success mx-auto my-2" style="width: 60px; height: 3px;"></div>
+                    <p class="text-white-50 col-md-8 mx-auto fs-5 mt-3">Elige la tarifa que mejor se adapte a tus necesidades de energía.</p>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <div class="pricing-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <h4 class="text-white mb-2">Pago por Hora</h4>
+                                <div class="bg-success bg-opacity-10 text-success d-inline-block px-3 py-1 rounded-pill mb-3 small fw-700">Ocasional</div>
+                                <div class="fs-1 fw-800 text-white my-3">$3.000<span class="fs-6 text-muted-custom fw-normal"> / hora</span></div>
+                                <p class="text-white-50 mb-4">Ideal para emergencias donde solo necesitas una carga rápida de tu dispositivo.</p>
+                                <ul class="list-unstyled text-start text-white mb-4">
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Cables incorporados (Lightning, Tipo C)</li>
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Carga rápida optimizada</li>
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Sin depósito previo</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-secondary-custom w-100" onclick="showAuthView('login')">Alquilar Ahora</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="pricing-card featured h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <h4 class="text-white mb-2">Pase Diario</h4>
+                                <div class="bg-success bg-opacity-20 text-success d-inline-block px-3 py-1 rounded-pill mb-3 small fw-700"><i class="bi bi-star-fill me-1"></i>Popular</div>
+                                <div class="fs-1 fw-800 text-white my-3">$10.000<span class="fs-6 text-muted-custom fw-normal"> / 24h</span></div>
+                                <p class="text-white-50 mb-4">Perfecto para días intensivos de trabajo fuera de casa, viajes o eventos.</p>
+                                <ul class="list-unstyled text-start text-white mb-4">
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Uso ilimitado por 24 horas</li>
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Devoluciones ilimitadas</li>
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Soporte prioritario</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-primary-custom w-100" onclick="showAuthView('registro')">Comprar Pase</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="pricing-card h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <h4 class="text-white mb-2">Suscripción Mensual</h4>
+                                <div class="bg-success bg-opacity-10 text-success d-inline-block px-3 py-1 rounded-pill mb-3 small fw-700">Frecuente</div>
+                                <div class="fs-1 fw-800 text-white my-3">$25.000<span class="fs-6 text-muted-custom fw-normal"> / mes</span></div>
+                                <p class="text-white-50 mb-4">La mejor opción para estudiantes o profesionales que usan el servicio a diario.</p>
+                                <ul class="list-unstyled text-start text-white mb-4">
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Alquileres diarios ilimitados</li>
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Hasta 3 horas gratis al día</li>
+                                    <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Acceso a cargadores Premium</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-secondary-custom w-100" onclick="showAuthView('registro')">Suscribirse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ESTACIONES EN VIVO -->
+        <section id="estaciones-live" class="py-5">
+            <div class="container py-4">
+                <div class="row mb-4 align-items-end">
+                    <div class="col-md-8">
+                        <h2 class="display-5 fw-800 text-white mb-1">Estaciones Disponibles</h2>
+                        <div class="bg-success my-2" style="width: 60px; height: 3px;"></div>
+                        <p class="text-white-50 fs-5 mt-3">Consulta el stock de cargadores y slots vacíos en tiempo real en nuestras estaciones de carga.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary border-opacity-30 text-muted"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control form-control-custom" id="search-station" placeholder="Buscar por nombre..." oninput="filterStations()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="stations-list">
+                    <!-- Dynamic rendering in app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: TESTIMONIOS -->
+        <section id="testimonios" class="py-5 bg-black bg-opacity-30">
+            <div class="container py-4">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-800 text-white">Nuestros Clientes Dicen</h2>
+                    <div class="bg-success mx-auto my-2" style="width: 60px; height: 3px;"></div>
+                    <p class="text-white-50 col-md-8 mx-auto fs-5 mt-3">Descubre la experiencia de las personas que ya utilizan PowerGo.</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+                            <p class="text-white fs-6 italic mb-4" style="line-height: 1.6;">
+                                "Como estudiante en la U de A, siempre tengo el celular descargado por las clases. El módulo de PowerGo me ha salvado la vida decenas de veces. Solo lo alquilo y lo devuelvo antes de irme a casa."
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Camila" alt="User" class="rounded-circle me-3" style="width: 48px; height: 48px;">
+                                <div>
+                                    <div class="fw-700 text-white">Camila Restrepo</div>
+                                    <div class="text-success small">Estudiante - U. de Antioquia</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+                            <p class="text-white fs-6 italic mb-4" style="line-height: 1.6;">
+                                "Excelente servicio en el Centro Comercial Santa Fe. Pude poner a cargar el teléfono de trabajo mientras hacía compras y lo entregué en la entrada principal sin problemas. ¡100% recomendado!"
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Mateo" alt="User" class="rounded-circle me-3" style="width: 48px; height: 48px;">
+                                <div>
+                                    <div class="fw-700 text-white">Mateo Gaviria</div>
+                                    <div class="text-success small">Ejecutivo de Ventas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+                            <p class="text-white fs-6 italic mb-4" style="line-height: 1.6;">
+                                "La batería tiene cables de todo tipo incorporados, así que no tuve que llevar el mío. Además, cargó mi teléfono inteligente muy rápido. Un concepto de economía colaborativa muy innovador."
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Sofía" alt="User" class="rounded-circle me-3" style="width: 48px; height: 48px;">
+                                <div>
+                                    <div class="fw-700 text-white">Sofía Alvarez</div>
+                                    <div class="text-success small">Diseñadora Digital</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: CONTACTO -->
+        <section id="contacto" class="py-5">
+            <div class="container py-4">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-800 text-white">Ponte en Contacto</h2>
+                    <div class="bg-success mx-auto my-2" style="width: 60px; height: 3px;"></div>
+                    <p class="text-white-50 col-md-8 mx-auto fs-5 mt-3">¿Tienes dudas o quieres llevar una estación de carga a tu establecimiento comercial?</p>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="glass-panel p-4 p-md-5">
+                            <form id="form-contacto" onsubmit="handleContactSubmit(event)">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="contact-name" class="form-label-custom">Nombre Completo</label>
+                                        <input type="text" class="form-control form-control-custom" id="contact-name" required placeholder="Ingresa tu nombre">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="contact-email" class="form-label-custom">Correo Electrónico</label>
+                                        <input type="email" class="form-control form-control-custom" id="contact-email" required placeholder="nombre@correo.com">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="contact-subject" class="form-label-custom">Asunto</label>
+                                        <input type="text" class="form-control form-control-custom" id="contact-subject" required placeholder="Ej. Solicitar estación en mi centro comercial">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="contact-message" class="form-label-custom">Mensaje o Comentario</label>
+                                        <textarea class="form-control form-control-custom" id="contact-message" rows="4" required placeholder="Escribe aquí tus inquietudes o comentarios..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="mt-4 text-end">
+                                    <button type="submit" class="btn btn-primary-custom px-4 py-3">
+                                        <i class="bi bi-send-fill me-2"></i>Enviar Mensaje
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- AUTH VIEWS (LOGIN / REGISTER / AUTH OVERLAYS) -->
+    <div id="auth-section-container" class="container py-5 d-none">
+        
+        <!-- LOGIN CARD -->
+        <div id="auth-login" class="row justify-content-center align-items-center min-vh-75 d-none">
+            <div class="col-md-6 col-lg-5">
+                <div class="glass-panel p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-shield-lock-fill text-success display-5 mb-2"></i>
+                        <h2 class="fw-800 text-white">Iniciar Sesión</h2>
+                        <p class="text-white-50">Accede a las funciones y gestiona tu préstamo</p>
+                    </div>
+                    
+                    <form id="form-login" onsubmit="handleLogin(event)">
+                        <div class="mb-3">
+                            <label for="login-email" class="form-label-custom">Correo Electrónico</label>
+                            <input type="email" class="form-control form-control-custom" id="login-email" required placeholder="ejemplo@powergo.com">
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-1">
+                                <label for="login-password" class="form-label-custom">Contraseña</label>
+                                <a href="javascript:void(0)" onclick="showForgotPassword()" class="text-success text-decoration-none small fw-600">¿La olvidaste?</a>
+                            </div>
+                            <input type="password" class="form-control form-control-custom" id="login-password" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3 fw-700 mb-3">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar
+                        </button>
+                    </form>
+                    
+                    <div class="text-center">
+                        <p class="text-white-50 small mb-3">¿No tienes una cuenta? <a href="javascript:void(0)" onclick="showAuthView('registro')" class="text-success fw-700 text-decoration-none">Registrarse aquí</a></p>
+                        <button class="btn btn-secondary-custom btn-sm w-100" onclick="closeAuthViews()"><i class="bi bi-arrow-left me-1"></i>Volver a la Landing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTRATION CARD -->
+        <div id="auth-registro" class="row justify-content-center align-items-center min-vh-75 d-none">
+            <div class="col-md-6 col-lg-5">
+                <div class="glass-panel p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-person-plus-fill text-success display-5 mb-2"></i>
+                        <h2 class="fw-800 text-white">Registro</h2>
+                        <p class="text-white-50">Crea una cuenta nueva en la plataforma</p>
+                    </div>
+                    
+                    <form id="form-registro" onsubmit="handleRegister(event)">
+                        <div class="mb-3">
+                            <label for="reg-name" class="form-label-custom">Nombre Completo</label>
+                            <input type="text" class="form-control form-control-custom" id="reg-name" required placeholder="Juan Pérez">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-email" class="form-label-custom">Correo Electrónico</label>
+                            <input type="email" class="form-control form-control-custom" id="reg-email" required placeholder="juan.perez@correo.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-phone" class="form-label-custom">Teléfono</label>
+                            <input type="tel" class="form-control form-control-custom" id="reg-phone" required placeholder="3001234567">
+                        </div>
+                        <div class="mb-4">
+                            <label for="reg-password" class="form-label-custom">Contraseña</label>
+                            <input type="password" class="form-control form-control-custom" id="reg-password" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3 fw-700 mb-3">
+                            <i class="bi bi-person-check-fill me-2"></i>Crear cuenta
+                        </button>
+                    </form>
+                    
+                    <div class="text-center">
+                        <p class="text-white-50 small mb-3">¿Ya tienes una cuenta? <a href="javascript:void(0)" onclick="showAuthView('login')" class="text-success fw-700 text-decoration-none">Iniciar sesión</a></p>
+                        <button class="btn btn-secondary-custom btn-sm w-100" onclick="closeAuthViews()"><i class="bi bi-arrow-left me-1"></i>Volver a la Landing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTHENTICATED USER WORKSPACE (DASHBOARD APP OVERLAY) -->
+    <div id="app-workspace-container" class="container py-5 d-none">
+        
+        <!-- WORKSPACE HEADER -->
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="glass-panel p-4 mb-4 border border-success border-opacity-20">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=PowerGo" id="dash-user-avatar" alt="Avatar" class="rounded-circle me-3 border border-success border-opacity-35" style="width: 55px; height: 55px;">
+                                <div>
+                                    <h2 class="fw-800 text-white mb-0"><span class="text-muted-custom fw-normal">Hola,</span> <span id="dash-user-name">Usuario</span></h2>
+                                    <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 mt-1"><i class="bi bi-shield-check-fill me-1"></i>Cliente Verificado</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end d-flex flex-wrap gap-2 justify-content-center justify-content-md-end">
+                            <button class="btn btn-primary-custom px-4" onclick="navigateToWorkspaceTab('estaciones')">
+                                <i class="bi bi-lightning-fill me-1"></i>Rentar Cargador
+                            </button>
+                            <button class="btn btn-secondary-custom px-3" onclick="closeAppDashboard()">
+                                <i class="bi bi-house-door me-1"></i>Ver Landing
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm border-0 px-2" onclick="logout()">
+                                <i class="bi bi-box-arrow-right fs-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKSPACE NAVIGATION TABS -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="glass-panel p-2">
+                    <ul class="nav nav-pills nav-fill gap-2" id="workspaceTabs" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link text-white fw-700 py-3 rounded-3 active" id="tab-dash" onclick="switchWorkspaceTab('dashboard')"><i class="bi bi-grid-fill me-2 text-success"></i>Panel de Control</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link text-white fw-700 py-3 rounded-3" id="tab-estaciones" onclick="switchWorkspaceTab('estaciones')"><i class="bi bi-geo-alt-fill me-2 text-success"></i>Alquilar Cargador</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link text-white fw-700 py-3 rounded-3" id="tab-prestamos" onclick="switchWorkspaceTab('prestamos')"><i class="bi bi-clock-history me-2 text-success"></i>Mis Préstamos</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link text-white fw-700 py-3 rounded-3" id="tab-perfil" onclick="switchWorkspaceTab('perfil')"><i class="bi bi-person-fill-gear me-2 text-success"></i>Mi Perfil</button>
+                        </li>
+                        <li class="nav-item d-none" id="tab-admin-item">
+                            <button class="nav-link text-info fw-700 py-3 rounded-3" id="tab-admin" onclick="switchWorkspaceTab('admin')"><i class="bi bi-shield-lock-fill me-2"></i>Administración</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKSPACE TAB PANELS -->
+        <div class="tab-content">
+            
+            <!-- PANEL: CONTROL DASHBOARD -->
+            <div id="pane-dashboard" class="workspace-pane">
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="glass-panel p-4 h-100">
+                            <h4 class="fw-700 text-white mb-3"><i class="bi bi-lightning-charge me-2 text-success"></i>Estado Actual</h4>
+                            <div class="text-center my-4 py-2">
+                                <div class="d-inline-flex bg-success bg-opacity-10 rounded-circle p-4 mb-3 border border-success border-opacity-20">
+                                    <i class="bi bi-battery-charging text-success display-4"></i>
+                                </div>
+                                <h5 class="fw-700 text-white" id="dash-loan-status-text">Sin préstamos activos</h5>
+                                <p class="text-white-50 small">Solicita un dispositivo en cualquier momento.</p>
+                            </div>
+                            <hr class="border-secondary border-opacity-30">
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <span class="text-white-50 small">Baterías Rentadas</span>
+                                <span class="badge bg-success bg-opacity-25 text-success px-3" id="dash-stat-total">0</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <span class="text-white-50 small">Fecha del Último Préstamo</span>
+                                <span class="text-white small fw-600" id="dash-stat-date">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row g-4 h-100">
+                            <div class="col-md-6">
+                                <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between card-station">
+                                    <div>
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-15 text-success rounded-3 p-3 mb-3">
+                                            <i class="bi bi-geo-alt-fill fs-3"></i>
+                                        </div>
+                                        <h4 class="text-white mb-2">Alquilar Cargador</h4>
+                                        <p class="text-white-50 small">Ubica la estación física y solicita un power bank disponible de manera digital.</p>
+                                    </div>
+                                    <button class="btn btn-secondary-custom w-100 mt-3" onclick="navigateToWorkspaceTab('estaciones')">Ver Estaciones</button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between card-station">
+                                    <div>
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-15 text-success rounded-3 p-3 mb-3">
+                                            <i class="bi bi-clock-history fs-3"></i>
+                                        </div>
+                                        <h4 class="text-white mb-2">Mis Préstamos</h4>
+                                        <p class="text-white-50 small">Comprueba tus cargadores activos y realiza la devolución a las estaciones de la red.</p>
+                                    </div>
+                                    <button class="btn btn-secondary-custom w-100 mt-3" onclick="navigateToWorkspaceTab('prestamos')">Ver Alquileres</button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between card-station">
+                                    <div>
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-15 text-success rounded-3 p-3 mb-3">
+                                            <i class="bi bi-person-fill-gear fs-3"></i>
+                                        </div>
+                                        <h4 class="text-white mb-2">Mi Perfil</h4>
+                                        <p class="text-white-50 small">Administra tus datos de registro, teléfono celular y credenciales de acceso.</p>
+                                    </div>
+                                    <button class="btn btn-secondary-custom w-100 mt-3" onclick="navigateToWorkspaceTab('perfil')">Configurar Datos</button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" id="dashboard-admin-card-container">
+                                <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between card-station border border-info border-opacity-20">
+                                    <div>
+                                        <div class="d-inline-flex align-items-center justify-content-center bg-info bg-opacity-15 text-info rounded-3 p-3 mb-3">
+                                            <i class="bi bi-shield-lock-fill fs-3"></i>
+                                        </div>
+                                        <h4 class="text-white mb-2">Administración</h4>
+                                        <p class="text-white-50 small">Agrega nuevas estaciones de carga física al mapa de la red y gestiona existencias.</p>
+                                    </div>
+                                    <button class="btn btn-secondary-custom w-100 mt-3 border border-info border-opacity-30 text-info" onclick="navigateToWorkspaceTab('admin')">Módulo de Control</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: BUSCADOR DE ESTACIONES -->
+            <div id="pane-estaciones" class="workspace-pane d-none">
+                <div class="row mb-4 align-items-end">
+                    <div class="col-md-8">
+                        <h3 class="text-white">Alquilar Cargador en Estación</h3>
+                        <p class="text-white-50 small">Selecciona una estación con power banks disponibles para procesar tu retiro.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-custom" id="search-station-workspace" placeholder="Filtrar por nombre..." oninput="filterStationsWorkspace()">
+                    </div>
+                </div>
+                <div class="row g-4" id="workspace-stations-list">
+                    <!-- Dynamic rendering in app.js -->
+                </div>
+            </div>
+
+            <!-- PANEL: MIS PRÉSTAMOS -->
+            <div id="pane-prestamos" class="workspace-pane d-none">
+                <div class="row g-4">
+                    <div class="col-lg-5">
+                        <div class="glass-panel p-4">
+                            <h4 class="fw-700 text-white mb-4"><i class="bi bi-lightning-fill text-success me-2"></i>Alquiler Activo</h4>
+                            <div id="active-loan-container">
+                                <!-- Dynamic rendering or empty state -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="glass-panel p-4 h-100">
+                            <h4 class="fw-700 text-white mb-4"><i class="bi bi-journal-text text-muted-custom me-2"></i>Historial de Transacciones</h4>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover align-middle mb-0 bg-transparent" style="--bs-table-bg: transparent; --bs-table-border-color: var(--border-glass);">
+                                    <thead>
+                                        <tr class="text-white-50 small">
+                                            <th scope="col" class="pb-3">Dispositivo</th>
+                                            <th scope="col" class="pb-3">Estación Origen</th>
+                                            <th scope="col" class="pb-3">Estación Destino</th>
+                                            <th scope="col" class="pb-3">Fecha</th>
+                                            <th scope="col" class="pb-3 text-end">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="history-table-body">
+                                        <!-- Dynamic rendering in app.js -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: MI PERFIL -->
+            <div id="pane-perfil" class="workspace-pane d-none">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="glass-panel p-4 p-md-5">
+                            <h3 class="fw-700 text-white mb-4"><i class="bi bi-person-circle text-success me-2"></i>Datos de Cuenta</h3>
+                            <form id="form-profile" onsubmit="handleProfileUpdate(event)">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="prof-name" class="form-label-custom">Nombre Completo</label>
+                                        <input type="text" class="form-control form-control-custom" id="prof-name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="prof-email" class="form-label-custom">Correo Electrónico</label>
+                                        <input type="email" class="form-control form-control-custom" id="prof-email" required disabled>
+                                        <div class="form-text text-white-50 small">El correo electrónico no puede ser modificado.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="prof-phone" class="form-label-custom">Número de Teléfono</label>
+                                        <input type="tel" class="form-control form-control-custom" id="prof-phone" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="prof-password" class="form-label-custom">Modificar Contraseña</label>
+                                        <input type="password" class="form-control form-control-custom" id="prof-password" placeholder="Nueva contraseña (dejar en blanco para mantener)">
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-2">
+                                    <button type="submit" class="btn btn-primary-custom px-4 py-3">
+                                        <i class="bi bi-save-fill me-2"></i>Guardar Cambios
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: ADMINISTRACIÓN -->
+            <div id="pane-admin" class="workspace-pane d-none">
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <h3 class="text-info"><i class="bi bi-shield-lock-fill me-2"></i>Panel de Control del Administrador</h3>
+                        <p class="text-white-50 small">Configura la red de estaciones de carga física e inventario.</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-5">
+                        <div class="glass-panel p-4">
+                            <h4 class="fw-700 text-white mb-3"><i class="bi bi-plus-circle-fill text-info me-2"></i>Agregar Nueva Estación</h4>
+                            <form id="form-add-station" onsubmit="handleAddStation(event)">
+                                <div class="mb-3">
+                                    <label for="admin-st-name" class="form-label-custom">Nombre de la Estación</label>
+                                    <input type="text" class="form-control form-control-custom" id="admin-st-name" required placeholder="Ej. Terminal del Norte">
+                                </div>
+                                <div class="row g-2 mb-4">
+                                    <div class="col-6">
+                                        <label for="admin-st-banks" class="form-label-custom">Cargadores Iniciales</label>
+                                        <input type="number" class="form-control form-control-custom" id="admin-st-banks" min="0" max="30" required value="10">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="admin-st-capacity" class="form-label-custom">Capacidad Total Slots</label>
+                                        <input type="number" class="form-control form-control-custom" id="admin-st-capacity" min="5" max="50" required value="20">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary-custom w-100 py-3 text-info border border-info border-opacity-30" style="background: rgba(59,130,246,0.15)">
+                                    <i class="bi bi-plus-lg me-2"></i>Crear Estación
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="glass-panel p-4 h-100">
+                            <h4 class="fw-700 text-white mb-3"><i class="bi bi-building-gear text-info me-2"></i>Inventario General de la Red</h4>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover align-middle mb-0 bg-transparent" style="--bs-table-bg: transparent; --bs-table-border-color: var(--border-glass);">
+                                    <thead>
+                                        <tr class="text-white-50 small">
+                                            <th scope="col" class="pb-3">Estación</th>
+                                            <th scope="col" class="pb-3 text-center">Cargadores</th>
+                                            <th scope="col" class="pb-3 text-center">Capacidad</th>
+                                            <th scope="col" class="pb-3 text-end">Operaciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-stations-body">
+                                        <!-- Dynamic rendering in app.js -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Return Modal Selection -->
+    <div class="modal fade" id="returnModal" tabindex="-1" aria-labelledby="returnModalLabel" aria-hidden="true" style="backdrop-filter: blur(8px);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-panel" style="background: rgba(15,23,42,0.95); border: 1px solid var(--border-glass-active)">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-800 text-white" id="returnModalLabel"><i class="bi bi-arrow-left-right text-success me-2"></i>Devolver Cargador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p class="text-white-50">Selecciona en qué estación física deseas realizar la devolución del power bank.</p>
+                    <div class="mb-3">
+                        <label for="modal-return-station" class="form-label-custom">Estación de Devolución</label>
+                        <select class="form-select form-control-custom" id="modal-return-station">
+                            <!-- Options filled dynamically -->
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary-custom" onclick="submitReturn()">Confirmar Devolución</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast System -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+        <div id="liveToast" class="toast toast-custom hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-transparent border-0 text-white pb-0">
+                <i class="bi bi-info-circle-fill text-success me-2" id="toast-icon"></i>
+                <strong class="me-auto" id="toast-title">Notificación</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body pt-2 text-white" id="toast-body">
+                Operación completada exitosamente.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-nav py-5 mt-auto">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4 text-center text-lg-start">
+                    <a class="navbar-brand d-flex align-items-center justify-content-center justify-content-lg-start mb-3" href="javascript:void(0)" onclick="scrollToSection('hero')">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-20 rounded-3 p-2 me-2" style="border: 1px solid rgba(16,185,129,0.3)">
+                            <i class="bi bi-lightning-charge-fill text-success fs-5"></i>
+                        </div>
+                        <span class="fs-4 fw-800 text-white">Power<span class="text-success">Go</span></span>
+                    </a>
+                    <p class="text-white-50 small pe-lg-4">Manteniendo tu mundo cargado y conectado. Alquila un cargador portátil inteligente y devuélvelo en cualquier estación de nuestra red a nivel nacional.</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 text-center text-lg-start">
+                    <h5 class="text-white mb-3">Enlaces Corporativos</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="javascript:void(0)" onclick="scrollToSection('hero')" class="footer-link">Inicio</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" onclick="scrollToSection('quienes-somos')" class="footer-link">Quiénes Somos (Empresa)</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" onclick="scrollToSection('como-funciona')" class="footer-link">Cómo Funciona</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" onclick="scrollToSection('planes')" class="footer-link">Tarifas y Planes</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" onclick="scrollToSection('estaciones-live')" class="footer-link">Estaciones en Vivo</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-lg-4 text-center text-lg-start">
+                    <h5 class="text-white mb-3">Información de Contacto</h5>
+                    <ul class="list-unstyled mb-0 text-white-50 small">
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill text-success me-2"></i>Medellín, Colombia</li>
+                        <li class="mb-2"><i class="bi bi-envelope-fill text-success me-2"></i>soporte@powergo.com.co</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill text-success me-2"></i>+57 (4) 300 123 4567</li>
+                        <li class="mb-2"><i class="bi bi-clock-fill text-success me-2"></i>Atención: 24 Horas / 7 Días</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary border-opacity-20 my-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="text-white-50 small">&copy; 2026 PowerGo. Todos los derechos reservados. Elaborado para el Servicio Nacional de Aprendizaje (SENA).</span>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <span class="text-white-50 small">Tecnología ADSO • Ficha 3336153 • Santiago Aristizabal Escobar</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle with Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript App Logic (External Files & Embedded Fallback) -->
+    <script src="js/app.js"></script>
+    <script src="app.js"></script>
+    <script>
+if (typeof initDatabase === 'undefined') {
+// app.js - Lógica e Interactividad Completa para la Landing Page y Aplicación PowerGo
+
+// 1. BASE DE DATOS SIMULADA (LocalStorage)
+const DEFAULT_STATIONS = [
+    { id: 'st-1', name: 'Centro Comercial Santa Fe', powerBanks: 15, capacity: 20 },
+    { id: 'st-2', name: 'Universidad de Antioquia', powerBanks: 8, capacity: 15 }
+];
+
+const DEFAULT_USERS = [
+    {
+        name: 'Santiago Aristizabal',
+        email: 'cliente@powergo.com',
+        phone: '3001234567',
+        password: '123',
+        role: 'user'
+    },
+    {
+        name: 'Administrador PowerGo',
+        email: 'admin@powergo.com',
+        phone: '3119876543',
+        password: 'admin',
+        role: 'admin'
+    }
+];
+
+const DEFAULT_LOANS = [
+    {
+        id: 'loan-1',
+        userEmail: 'cliente@powergo.com',
+        deviceId: 'PB-021',
+        status: 'Activo',
+        date: '16/07/2026',
+        stationSource: 'Centro Comercial Santa Fe',
+        stationDest: ''
+    }
+];
+
+function initDatabase() {
+    if (!localStorage.getItem('pg_stations')) {
+        localStorage.setItem('pg_stations', JSON.stringify(DEFAULT_STATIONS));
+    }
+    if (!localStorage.getItem('pg_users')) {
+        localStorage.setItem('pg_users', JSON.stringify(DEFAULT_USERS));
+    }
+    if (!localStorage.getItem('pg_loans')) {
+        localStorage.setItem('pg_loans', JSON.stringify(DEFAULT_LOANS));
+    }
+}
+
+const getStations = () => JSON.parse(localStorage.getItem('pg_stations'));
+const setStations = (data) => localStorage.setItem('pg_stations', JSON.stringify(data));
+const getUsers = () => JSON.parse(localStorage.getItem('pg_users'));
+const setUsers = (data) => localStorage.setItem('pg_users', JSON.stringify(data));
+const getLoans = () => JSON.parse(localStorage.getItem('pg_loans'));
+const setLoans = (data) => localStorage.setItem('pg_loans', JSON.stringify(data));
+
+// Estado de sesión activa
+let currentUser = null;
+let currentReturnLoanId = null;
+
+// 2. ENRUTADOR Y COMPORTAMIENTO DE SECCIONES (LANDING VS WORKSPACE)
+
+// Desplazamiento suave en la landing page
+function scrollToSection(sectionId) {
+    // Cerrar contenedores de aplicación
+    document.getElementById('auth-section-container').classList.add('d-none');
+    document.getElementById('app-workspace-container').classList.add('d-none');
+    
+    // Mostrar landing page
+    document.getElementById('landing-page-container').classList.remove('d-none');
+    
+    // Desplazar a la sección
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Actualizar HUD del flujo
+    updateNavigationMapHUD('inicio');
+}
+
+// Mostrar login o registro
+function showAuthView(viewType) {
+    // Esconder landing y workspace
+    document.getElementById('landing-page-container').classList.add('d-none');
+    document.getElementById('app-workspace-container').classList.add('d-none');
+    
+    // Mostrar contenedor de autenticación
+    const container = document.getElementById('auth-section-container');
+    container.classList.remove('d-none');
+    
+    // Alternar vistas dentro de autenticación
+    if (viewType === 'login') {
+        document.getElementById('auth-login').classList.remove('d-none');
+        document.getElementById('auth-registro').classList.add('d-none');
+    } else {
+        document.getElementById('auth-login').classList.add('d-none');
+        document.getElementById('auth-registro').classList.remove('d-none');
+    }
+    
+    // Scroll al tope
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Actualizar HUD
+    updateNavigationMapHUD('auth');
+}
+
+function closeAuthViews() {
+    document.getElementById('auth-section-container').classList.add('d-none');
+    document.getElementById('landing-page-container').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateNavigationMapHUD('inicio');
+}
+
+// Abrir el workspace de la aplicación privada
+function showAppDashboard() {
+    if (!currentUser) {
+        showToast('Acceso Denegado', 'Por favor inicia sesión para entrar al panel.', 'info');
+        showAuthView('login');
+        return;
+    }
+    
+    // Ocultar landing y auth
+    document.getElementById('landing-page-container').classList.add('d-none');
+    document.getElementById('auth-section-container').classList.add('d-none');
+    
+    // Mostrar Workspace
+    document.getElementById('app-workspace-container').classList.remove('d-none');
+    
+    // Activar pestaña por defecto (dashboard)
+    switchWorkspaceTab('dashboard');
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeAppDashboard() {
+    document.getElementById('app-workspace-container').classList.add('d-none');
+    document.getElementById('landing-page-container').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateNavigationMapHUD('inicio');
+}
+
+// Navegar directamente a una pestaña del workspace desde el exterior
+function navigateToWorkspaceTab(tabId) {
+    if (!currentUser) {
+        showToast('Iniciar Sesión', 'Debes iniciar sesión para realizar esta acción.', 'info');
+        showAuthView('login');
+        return;
+    }
+    showAppDashboard();
+    switchWorkspaceTab(tabId);
+}
+
+// Alternar pestañas del workspace
+function switchWorkspaceTab(tabId) {
+    // Ocultar todos los paneles del workspace
+    document.querySelectorAll('.workspace-pane').forEach(pane => {
+        pane.classList.add('d-none');
+    });
+    
+    // Mostrar el panel activo
+    document.getElementById(`pane-${tabId}`).classList.remove('d-none');
+    
+    // Desactivar todos los botones nav pill
+    document.querySelectorAll('#workspaceTabs .nav-link').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Activar el botón correspondiente
+    document.getElementById(`tab-${tabId}`).classList.add('active');
+    
+    // Actualizar HUD
+    if (tabId === 'dashboard') {
+        updateNavigationMapHUD('dashboard');
+        renderDashboardStats();
+    } else {
+        updateNavigationMapHUD('features');
+    }
+    
+    // Renderizados específicos
+    if (tabId === 'estaciones') {
+        renderWorkspaceStations();
+    } else if (tabId === 'prestamos') {
+        renderLoans();
+    } else if (tabId === 'perfil') {
+        loadProfileData();
+    } else if (tabId === 'admin') {
+        renderAdminPanel();
+    }
+}
+
+// Actualizar colores del mapa de flujo HUD
+function updateNavigationMapHUD(state) {
+    document.querySelectorAll('.flowchart-node').forEach(node => {
+        node.classList.remove('active-node');
+    });
+
+    const nodeInicio = document.getElementById('node-inicio');
+    const nodeAuth = document.getElementById('node-auth');
+    const nodeDashboard = document.getElementById('node-dashboard');
+    const nodeFeatures = document.getElementById('node-features');
+
+    if (state === 'inicio') {
+        nodeInicio.classList.add('active-node');
+    } else if (state === 'auth') {
+        nodeAuth.classList.add('active-node');
+    } else if (state === 'dashboard') {
+        nodeDashboard.classList.add('active-node');
+    } else if (state === 'features') {
+        nodeFeatures.classList.add('active-node');
+    }
+}
+
+// 3. AUTENTICACIÓN
+function handleRegister(e) {
+    e.preventDefault();
+    const name = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim().toLowerCase();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const password = document.getElementById('reg-password').value;
+
+    const users = getUsers();
+    if (users.find(u => u.email === email)) {
+        showToast('Error de Registro', 'El correo ya se encuentra registrado.', 'danger');
+        return;
+    }
+
+    const newUser = { name, email, phone, password, role: 'user' };
+    users.push(newUser);
+    setUsers(users);
+
+    document.getElementById('form-registro').reset();
+    showToast('Registro Exitoso', 'Tu cuenta ha sido creada. Iniciando sesión...', 'success');
+    loginUser(newUser);
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const password = document.getElementById('login-password').value;
+
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (!user) {
+        showToast('Error de Ingreso', 'Correo o contraseña incorrectos.', 'danger');
+        return;
+    }
+
+    document.getElementById('form-login').reset();
+    showToast('Bienvenido', `Hola de nuevo, ${user.name}!`, 'success');
+    loginUser(user);
+}
+
+function loginUser(user) {
+    currentUser = user;
+    
+    // Actualizar botones de la cabecera
+    document.getElementById('btn-login-container').classList.add('d-none');
+    document.getElementById('btn-register-container').classList.add('d-none');
+    document.getElementById('btn-user-container').classList.remove('d-none');
+    
+    // Cargar datos en el Workspace
+    document.getElementById('dash-user-name').textContent = user.name;
+    document.getElementById('dash-user-avatar').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(user.name)}`;
+
+    // Mostrar pestaña de administración si es admin
+    const adminTab = document.getElementById('tab-admin-item');
+    const adminCard = document.getElementById('dashboard-admin-card-container');
+    if (user.role === 'admin') {
+        adminTab.classList.remove('d-none');
+        adminCard.classList.remove('d-none');
+    } else {
+        adminTab.classList.add('d-none');
+        adminCard.classList.add('d-none');
+    }
+
+    showAppDashboard();
+}
+
+function logout() {
+    currentUser = null;
+    document.getElementById('btn-user-container').classList.add('d-none');
+    document.getElementById('btn-login-container').classList.remove('d-none');
+    document.getElementById('btn-register-container').classList.remove('d-none');
+    
+    showToast('Sesión Cerrada', 'Has salido de tu cuenta correctamente.', 'success');
+    closeAppDashboard();
+}
+
+function showForgotPassword() {
+    showToast('Recuperación de Contraseña', 'Se ha enviado un enlace de recuperación a tu correo de prueba.', 'info');
+}
+
+// 4. FLUJO DE PERFIL
+function loadProfileData() {
+    if (!currentUser) return;
+    document.getElementById('prof-name').value = currentUser.name;
+    document.getElementById('prof-email').value = currentUser.email;
+    document.getElementById('prof-phone').value = currentUser.phone;
+    document.getElementById('prof-password').value = '';
+}
+
+function handleProfileUpdate(e) {
+    e.preventDefault();
+    if (!currentUser) return;
+
+    const name = document.getElementById('prof-name').value.trim();
+    const phone = document.getElementById('prof-phone').value.trim();
+    const password = document.getElementById('prof-password').value;
+
+    const users = getUsers();
+    const index = users.findIndex(u => u.email === currentUser.email);
+
+    if (index !== -1) {
+        users[index].name = name;
+        users[index].phone = phone;
+        if (password) {
+            users[index].password = password;
+        }
+        setUsers(users);
+
+        currentUser = users[index];
+        document.getElementById('dash-user-name').textContent = currentUser.name;
+        document.getElementById('dash-user-avatar').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(currentUser.name)}`;
+
+        showToast('Perfil Guardado', 'Tus datos se actualizaron correctamente.', 'success');
+        switchWorkspaceTab('dashboard');
+    }
+}
+
+// 5. FLUJO DE ALQUILERES Y DEVOLUCIONES
+function requestLoan(stationId) {
+    if (!currentUser) {
+        showToast('Inicia Sesión', 'Inicia sesión para poder alquilar un power bank.', 'info');
+        showAuthView('login');
+        return;
+    }
+
+    // Comprobar préstamo activo
+    const loans = getLoans();
+    const activeLoan = loans.find(l => l.userEmail === currentUser.email && l.status === 'Activo');
+    if (activeLoan) {
+        showToast('Préstamo Activo Detectado', 'Ya tienes un cargador contigo. Debes devolverlo para poder alquilar otro.', 'danger');
+        return;
+    }
+
+    // Comprobar existencias
+    const stations = getStations();
+    const station = stations.find(s => s.id === stationId);
+
+    if (!station || station.powerBanks <= 0) {
+        showToast('Sin existencias', 'Esta estación no posee power banks disponibles por ahora.', 'danger');
+        return;
+    }
+
+    // Procesar préstamo
+    station.powerBanks -= 1;
+    setStations(stations);
+
+    const randomIdNum = Math.floor(100 + Math.random() * 900);
+    const newLoan = {
+        id: `loan-${Date.now()}`,
+        userEmail: currentUser.email,
+        deviceId: `PB-${randomIdNum}`,
+        status: 'Activo',
+        date: new Date().toLocaleDateString('es-ES'),
+        stationSource: station.name,
+        stationDest: ''
+    };
+
+    loans.push(newLoan);
+    setLoans(loans);
+
+    showToast('Retiro Autorizado', `Solicitud de cargador ${newLoan.deviceId} aprobada en la estación ${station.name}.`, 'success');
+    navigateToWorkspaceTab('prestamos');
+    
+    // Recargar componentes de estaciones
+    renderLandingStations();
+}
+
+function openReturnModal(loanId) {
+    currentReturnLoanId = loanId;
+    
+    const select = document.getElementById('modal-return-station');
+    select.innerHTML = '';
+    
+    const stations = getStations();
+    stations.forEach(s => {
+        const option = document.createElement('option');
+        option.value = s.id;
+        option.textContent = `${s.name} (${s.capacity - s.powerBanks} slots libres)`;
+        select.appendChild(option);
+    });
+
+    const myModal = new bootstrap.Modal(document.getElementById('returnModal'));
+    myModal.show();
+}
+
+function submitReturn() {
+    if (!currentReturnLoanId) return;
+
+    const select = document.getElementById('modal-return-station');
+    const stationId = select.value;
+
+    const stations = getStations();
+    const station = stations.find(s => s.id === stationId);
+
+    if (!station) {
+        showToast('Error', 'Estación seleccionada inválida.', 'danger');
+        return;
+    }
+
+    // Validar capacidad
+    if (station.powerBanks >= station.capacity) {
+        showToast('Estación Completa', 'No hay slots libres en esta estación para depositar el cargador.', 'danger');
+        return;
+    }
+
+    // Registrar devolución
+    const loans = getLoans();
+    const loan = loans.find(l => l.id === currentReturnLoanId);
+
+    if (loan) {
+        station.powerBanks += 1;
+        setStations(stations);
+
+        loan.status = 'Devuelto';
+        loan.stationDest = station.name;
+        setLoans(loans);
+
+        const modalEl = document.getElementById('returnModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+
+        showToast('Devolución Completada', `Cargador depositado con éxito en ${station.name}.`, 'success');
+        switchWorkspaceTab('prestamos');
+        
+        // Recargar estaciones
+        renderLandingStations();
+    }
+}
+
+// 6. RENDERIZACIÓN Y FILTRADOS
+
+// Estadísticas generales para la Landing Page
+function renderLandingStats() {
+    const stations = getStations();
+    const totalBanks = stations.reduce((acc, st) => acc + st.powerBanks, 0);
+    
+    document.getElementById('home-total-banks').textContent = totalBanks;
+    document.getElementById('home-total-stations').textContent = stations.length;
+}
+
+// Render de estaciones en la Landing Page pública
+function renderLandingStations() {
+    const list = document.getElementById('stations-list');
+    list.innerHTML = '';
+    const stations = getStations();
+
+    stations.forEach(s => {
+        const slots = s.capacity - s.powerBanks;
+        const percent = Math.round((s.powerBanks / s.capacity) * 100);
+        let progressColor = 'bg-success';
+        if (percent < 25) progressColor = 'bg-danger';
+        else if (percent < 60) progressColor = 'bg-warning';
+
+        const card = document.createElement('div');
+        card.className = 'col-md-6 col-lg-6 station-card-item';
+        card.dataset.name = s.name.toLowerCase();
+        card.innerHTML = `
+            <div class="glass-panel p-4 card-station h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h4 class="fw-700 text-white mb-0">${s.name}</h4>
+                        <span class="badge badge-energy"><i class="bi bi-lightning-fill me-1"></i>${s.powerBanks} Libres</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between small text-white mb-1">
+                            <span>Disponibilidad</span>
+                            <span>${s.powerBanks}/${s.capacity} Cargadores</span>
+                        </div>
+                        <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.05);">
+                            <div class="progress-bar ${progressColor}" role="progressbar" style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between text-white-50 small border-top border-secondary border-opacity-20 pt-3">
+                        <span><i class="bi bi-unlock-fill me-1 text-success"></i> ${slots} slots vacíos</span>
+                        <span><i class="bi bi-geo-alt-fill me-1 text-primary"></i> Estación Física</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary-custom w-100 mt-4 py-2.5 fw-700" onclick="requestLoan('${s.id}')">
+                    <i class="bi bi-lightning-charge-fill me-1"></i>Alquilar Cargador
+                </button>
+            </div>
+        `;
+        list.appendChild(card);
+    });
+}
+
+function filterStations() {
+    const query = document.getElementById('search-station').value.toLowerCase();
+    document.querySelectorAll('#stations-list .station-card-item').forEach(card => {
+        if (card.dataset.name.includes(query)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Render de estaciones dentro del Workspace privado
+function renderWorkspaceStations() {
+    const list = document.getElementById('workspace-stations-list');
+    list.innerHTML = '';
+    const stations = getStations();
+
+    stations.forEach(s => {
+        const slots = s.capacity - s.powerBanks;
+        const percent = Math.round((s.powerBanks / s.capacity) * 100);
+        let progressColor = 'bg-success';
+        if (percent < 25) progressColor = 'bg-danger';
+        else if (percent < 60) progressColor = 'bg-warning';
+
+        const card = document.createElement('div');
+        card.className = 'col-md-6 col-lg-6 w-station-card-item';
+        card.dataset.name = s.name.toLowerCase();
+        card.innerHTML = `
+            <div class="glass-panel p-4 card-station h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h4 class="fw-700 text-white mb-0">${s.name}</h4>
+                        <span class="badge badge-energy"><i class="bi bi-lightning-fill me-1"></i>${s.powerBanks} Libres</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between small text-white mb-1">
+                            <span>Disponibilidad</span>
+                            <span>${s.powerBanks}/${s.capacity} Cargadores</span>
+                        </div>
+                        <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.05);">
+                            <div class="progress-bar ${progressColor}" role="progressbar" style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between text-white-50 small border-top border-secondary border-opacity-20 pt-3">
+                        <span><i class="bi bi-unlock-fill me-1 text-success"></i> ${slots} slots vacíos</span>
+                        <span><i class="bi bi-geo-alt-fill me-1 text-primary"></i> Estación Física</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary-custom w-100 mt-4 py-2.5 fw-700" onclick="requestLoan('${s.id}')">
+                    <i class="bi bi-lightning-charge-fill me-1"></i>Solicitar Retiro
+                </button>
+            </div>
+        `;
+        list.appendChild(card);
+    });
+}
+
+function filterStationsWorkspace() {
+    const query = document.getElementById('search-station-workspace').value.toLowerCase();
+    document.querySelectorAll('#workspace-stations-list .w-station-card-item').forEach(card => {
+        if (card.dataset.name.includes(query)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Estadísticas del Workspace
+function renderDashboardStats() {
+    if (!currentUser) return;
+    
+    const loans = getLoans();
+    const activeLoan = loans.find(l => l.userEmail === currentUser.email && l.status === 'Activo');
+    const myHistoryCount = loans.filter(l => l.userEmail === currentUser.email).length;
+
+    const statusText = document.getElementById('dash-loan-status-text');
+    const statTotal = document.getElementById('dash-stat-total');
+    const statDate = document.getElementById('dash-stat-date');
+
+    statTotal.textContent = myHistoryCount;
+
+    if (activeLoan) {
+        statusText.innerHTML = `Préstamo Activo: <span class="text-success fw-800">${activeLoan.deviceId}</span>`;
+        statDate.textContent = activeLoan.date;
+    } else {
+        statusText.textContent = 'Sin préstamos activos';
+        const lastLoan = [...loans].reverse().find(l => l.userEmail === currentUser.email);
+        statDate.textContent = lastLoan ? lastLoan.date : '-';
+    }
+}
+
+// Renderizado de la lista de Préstamos
+function renderLoans() {
+    if (!currentUser) return;
+
+    const activeContainer = document.getElementById('active-loan-container');
+    const tableBody = document.getElementById('history-table-body');
+    
+    activeContainer.innerHTML = '';
+    tableBody.innerHTML = '';
+
+    const loans = getLoans();
+    const activeLoan = loans.find(l => l.userEmail === currentUser.email && l.status === 'Activo');
+    const myHistory = loans.filter(l => l.userEmail === currentUser.email);
+
+    if (activeLoan) {
+        activeContainer.innerHTML = `
+            <div class="text-center py-4">
+                <div class="battery-icon-animated mb-4">
+                    <div class="battery-level" style="animation-duration: 1.5s;"></div>
+                </div>
+                <h3 class="fw-800 text-white mb-1">${activeLoan.deviceId}</h3>
+                <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-30 mb-4 px-3 py-1.5 fw-700">
+                    <i class="bi bi-clock-history me-1"></i>Estado: Activo
+                </span>
+                
+                <div class="bg-dark bg-opacity-40 p-3 rounded-3 border border-secondary border-opacity-30 text-start mb-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-white-50 small">Fecha de Retiro:</span>
+                        <span class="text-white small fw-700">${activeLoan.date}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-white-50 small">Estación de Origen:</span>
+                        <span class="text-white small fw-700">${activeLoan.stationSource}</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary-custom w-100 py-3" onclick="openReturnModal('${activeLoan.id}')">
+                    <i class="bi bi-arrow-left-right me-2"></i>Devolver Cargador
+                </button>
+            </div>
+        `;
+    } else {
+        activeContainer.innerHTML = `
+            <div class="text-center py-5">
+                <i class="bi bi-battery-fill text-muted-custom display-4 mb-3 d-block"></i>
+                <h5 class="text-white fw-700">Sin alquileres activos</h5>
+                <p class="text-white-50 small px-4 mb-3">Los detalles de tu alquiler de energía aparecerán en esta sección cuando retires un cargador.</p>
+                <button class="btn btn-secondary-custom btn-sm px-3" onclick="navigateToWorkspaceTab('estaciones')">Alquilar Ahora</button>
+            </div>
+        `;
+    }
+
+    if (myHistory.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5" class="text-center py-4 text-white-50 small">No posees actividades en el historial.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    myHistory.slice().reverse().forEach(l => {
+        const badgeClass = l.status === 'Activo' ? 'bg-success bg-opacity-25 text-success border border-success border-opacity-25' : 'bg-secondary bg-opacity-25 text-white-50';
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="text-white py-3 fw-700">${l.deviceId}</td>
+            <td class="text-white-50 py-3 small">${l.stationSource}</td>
+            <td class="text-white-50 py-3 small">${l.stationDest || '-'}</td>
+            <td class="text-white-50 py-3 small">${l.date}</td>
+            <td class="py-3 text-end"><span class="badge ${badgeClass} px-2.5 py-1.5">${l.status}</span></td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Módulo de Administración
+function renderAdminPanel() {
+    const tableBody = document.getElementById('admin-stations-body');
+    tableBody.innerHTML = '';
+    const stations = getStations();
+
+    stations.forEach(s => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="text-white py-3 fw-700">${s.name}</td>
+            <td class="text-center text-success py-3 fw-700">${s.powerBanks}</td>
+            <td class="text-center text-white-50 py-3">${s.capacity}</td>
+            <td class="text-end py-3">
+                <button class="btn btn-outline-danger btn-sm border-0" onclick="deleteStation('${s.id}')">
+                    <i class="bi bi-trash3-fill"></i>
+                </button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+function handleAddStation(e) {
+    e.preventDefault();
+    const name = document.getElementById('admin-st-name').value.trim();
+    const powerBanks = parseInt(document.getElementById('admin-st-banks').value);
+    const capacity = parseInt(document.getElementById('admin-st-capacity').value);
+
+    if (powerBanks > capacity) {
+        showToast('Configuración Inválida', 'La cantidad inicial no puede ser mayor que la capacidad total de slots.', 'danger');
+        return;
+    }
+
+    const stations = getStations();
+    if (stations.find(s => s.name.toLowerCase() === name.toLowerCase())) {
+        showToast('Estación Duplicada', 'Ya existe una estación registrada con ese nombre.', 'danger');
+        return;
+    }
+
+    const newStation = {
+        id: `st-${Date.now()}`,
+        name,
+        powerBanks,
+        capacity
+    };
+
+    stations.push(newStation);
+    setStations(stations);
+
+    document.getElementById('form-add-station').reset();
+    showToast('Estación Registrada', `La estación "${name}" ha sido añadida de forma exitosa.`, 'success');
+    
+    // Recargar tablas
+    renderAdminPanel();
+    renderLandingStations();
+    renderLandingStats();
+}
+
+function deleteStation(stationId) {
+    let stations = getStations();
+    const station = stations.find(s => s.id === stationId);
+    
+    if (confirm(`¿Estás seguro de que deseas eliminar la estación "${station.name}"?`)) {
+        stations = stations.filter(s => s.id !== stationId);
+        setStations(stations);
+        showToast('Estación Removida', 'La estación fue removida de la red.', 'success');
+        
+        renderAdminPanel();
+        renderLandingStations();
+        renderLandingStats();
+    }
+}
+
+// 7. ENVÍO DE FORMULARIO DE CONTACTO
+function handleContactSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const subject = document.getElementById('contact-subject').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+
+    // Simular envío de datos a servidor de PowerGo
+    showToast('Mensaje Recibido', `Gracias por contactarnos, ${name}. Responderemos a tu solicitud en menos de 24 horas.`, 'success');
+    document.getElementById('form-contacto').reset();
+}
+
+// 8. NOTIFICACIONES (Toast)
+function showToast(title, body, type = 'success') {
+    const toastEl = document.getElementById('liveToast');
+    const toastTitle = document.getElementById('toast-title');
+    const toastBody = document.getElementById('toast-body');
+    const toastIcon = document.getElementById('toast-icon');
+
+    // Estilos según severidad
+    toastIcon.className = 'bi me-2';
+    if (type === 'success') {
+        toastIcon.classList.add('bi-check-circle-fill', 'text-success');
+        toastEl.style.borderColor = 'var(--primary)';
+    } else if (type === 'danger') {
+        toastIcon.classList.add('bi-exclamation-triangle-fill', 'text-danger');
+        toastEl.style.borderColor = '#ef4444';
+    } else {
+        toastIcon.classList.add('bi-info-circle-fill', 'text-info');
+        toastEl.style.borderColor = 'var(--accent)';
+    }
+
+    toastTitle.textContent = title;
+    toastBody.textContent = body;
+
+    const toast = new bootstrap.Toast(toastEl, { delay: 4500 });
+    toast.show();
+}
+
+// 9. CARGA INICIAL
+window.addEventListener('DOMContentLoaded', () => {
+    initDatabase();
+    renderLandingStats();
+    renderLandingStations();
+    updateNavigationMapHUD('inicio');
+});
+
+}
+    </script>
+</body>
+</html>
