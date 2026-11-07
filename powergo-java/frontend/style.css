@@ -1,0 +1,319 @@
+/* style.css - PowerGo Custom Premium Design System (High Contrast & Landing Page Optimized) */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-dark: #080c14;
+    --bg-card: rgba(20, 28, 45, 0.85);
+    --border-glass: rgba(255, 255, 255, 0.12);
+    --border-glass-active: rgba(16, 185, 129, 0.5);
+    --primary: #10b981;
+    --primary-glow: rgba(16, 185, 129, 0.25);
+    --primary-dark: #059669;
+    --accent: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.25);
+    
+    /* High Contrast Text Colors */
+    --text-main: #ffffff;
+    --text-body: #e2e8f0;
+    --text-muted: #cbd5e1;
+    --text-muted-dark: #94a3b8;
+    
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(59, 130, 246, 0.08) 0%, transparent 45%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 5px;
+    border: 2px solid var(--bg-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    transition: var(--transition-smooth);
+    color: var(--text-main);
+}
+.glass-panel:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.55);
+}
+.glass-panel.panel-active {
+    border-color: var(--border-glass-active);
+    box-shadow: 0 0 25px var(--primary-glow);
+}
+
+.glass-nav {
+    background: rgba(8, 12, 20, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    transition: var(--transition-smooth);
+}
+
+/* Typography & Headers */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+}
+.text-muted-custom {
+    color: var(--text-muted) !important;
+}
+.gradient-text {
+    background: linear-gradient(135deg, #ffffff 40%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.gradient-text-accent {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Section transitions */
+.app-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.app-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom Buttons */
+.btn-primary-custom {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff !important;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.75rem;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    filter: brightness(1.1);
+}
+.btn-primary-custom:active {
+    transform: translateY(0);
+}
+
+.btn-secondary-custom {
+    background: rgba(30, 41, 59, 0.7);
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    padding: 0.75rem 1.75rem;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+}
+.btn-secondary-custom:hover {
+    background: rgba(51, 65, 85, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Inputs and Forms */
+.form-control-custom {
+    background: rgba(15, 23, 42, 0.9) !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    padding: 0.8rem 1.2rem !important;
+    transition: var(--transition-smooth) !important;
+}
+.form-control-custom:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 12px var(--primary-glow) !important;
+    outline: none !important;
+}
+.form-control-custom::placeholder {
+    color: var(--text-muted-dark);
+}
+
+.form-label-custom {
+    color: var(--text-main) !important;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Cards & Lists */
+.card-station {
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: var(--transition-smooth);
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+}
+.card-station:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Pricing Card style */
+.pricing-card {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+.pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+}
+.pricing-card.featured {
+    border-color: var(--primary);
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(17, 24, 39, 0.85) 100%);
+    box-shadow: 0 4px 25px rgba(16, 185, 129, 0.15);
+}
+
+/* Badges */
+.badge-energy {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    font-weight: 700;
+    padding: 0.5em 0.9em;
+    border-radius: 6px;
+}
+
+.badge-info-custom {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    font-weight: 700;
+    padding: 0.5em 0.9em;
+    border-radius: 6px;
+}
+
+/* Animated Battery */
+.battery-icon-animated {
+    width: 50px;
+    height: 90px;
+    border: 3.5px solid #cbd5e1;
+    border-radius: 8px;
+    position: relative;
+    padding: 3px;
+    margin: 0 auto;
+}
+.battery-icon-animated::after {
+    content: '';
+    width: 22px;
+    height: 7px;
+    background: #cbd5e1;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px 3px 0 0;
+}
+.battery-level {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, #10b981, #34d399);
+    border-radius: 4px;
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+    animation: battery-charge 2.5s infinite ease-in-out;
+}
+
+/* Navigation Map Flow HUD */
+.flowchart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+.flowchart-node {
+    padding: 0.6rem 1.2rem;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+    min-width: 120px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+.flowchart-node:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+.flowchart-node.active-node {
+    border-color: var(--primary);
+    background: var(--primary-glow);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+.flowchart-arrow {
+    color: var(--text-muted-dark);
+    font-size: 1.1rem;
+}
+
+/* Toast Overwrite */
+.toast-custom {
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid var(--border-glass-active) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    color: #ffffff !important;
+}
+
+/* Text highlight */
+.highlight-text {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* Footer links style */
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+.footer-link:hover {
+    color: var(--primary);
+}

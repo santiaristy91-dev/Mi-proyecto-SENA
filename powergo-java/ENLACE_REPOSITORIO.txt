@@ -1,0 +1,20 @@
+# Repositorio Oficial del Proyecto PowerGo
+**Evidencia:** GA7-220501096-AA2-EV01 - Codificación de módulos del software  
+**Programa:** Tecnología en Análisis y Desarrollo de Software (ADSO) - Ficha 3336153  
+**Aprendiz:** Santiago Aristizabal Escobar  
+**Centro:** Centro de Servicios y Gestión Empresarial - SENA Regional Antioquia  
+
+---
+
+### Enlace al Repositorio Remoto en GitHub:
+https://github.com/santiarist91-dev/Mi-proyecto-SENA
+
+---
+
+### Descripción del Repositorio y Módulos:
+Este repositorio contiene el código fuente completo del sistema **PowerGo** (Plataforma de Alquiler y Gestión de Baterías Portátiles):
+
+1. **Módulo Frontend:** Landing page responsiva, interfaz de usuario con Bootstrap 5, Dark Mode, lógica en JavaScript ES6+ (`app.js`) y estilos modulares (`style.css`).
+2. **Módulo de Base de Datos:** Script relacional DDL/DML para MySQL/MariaDB (`database/powergo_db.sql`) con tablas normalizadas, procedimientos almacenados y triggers.
+3. **Módulo Backend Java (JDBC):** Arquitectura modular multicapa (Model, DAO, Util, App) con conexión a MySQL por medio de JDBC, garantizando operaciones CRUD (Inserción, Consulta, Actualización y Eliminación).
+4. **Documentación Técnica y Estándares:** Informes técnicos de arquitectura, estándares de codificación (GA7-220501096-AA1-EV02) y usabilidad.
