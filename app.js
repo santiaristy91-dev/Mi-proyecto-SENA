@@ -212,25 +212,43 @@ function updateNavigationMapHUD(state) {
 }
 
 // 3. AUTENTICACIÓN
-function handleRegister(e) {
+async function handleRegister(e) {
     e.preventDefault();
     const name = document.getElementById('reg-name').value.trim();
     const email = document.getElementById('reg-email').value.trim().toLowerCase();
     const phone = document.getElementById('reg-phone').value.trim();
     const password = document.getElementById('reg-password').value;
 
-    const users = getUsers();
-    if (users.find(u => u.email === email)) {
-        showToast('Error de Registro', 'El correo ya se encuentra registrado.', 'danger');
-        return;
+    // Conexión directa a la Base de Datos MySQL
+    try {
+        const response = await fetch('http://localhost:8080/api/register.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, phone, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showToast('Registro Exitoso en MySQL', `Usuario #${data.id_usuario} guardado en la base de datos.`, 'success');
+        } else {
+            showToast('Aviso', data.message, 'warning');
+        }
+    } catch (err) {
+        console.warn('Conectando a base de datos local fallback:', err);
     }
 
+    // Sincronizar también con la sesión activa de la landing
+    const users = getUsers();
+    let existing = users.find(u => u.email === email);
     const newUser = { name, email, phone, password, role: 'user' };
-    users.push(newUser);
-    setUsers(users);
+    if (!existing) {
+        users.push(newUser);
+        setUsers(users);
+    }
 
     document.getElementById('form-registro').reset();
-    showToast('Registro Exitoso', 'Tu cuenta ha sido creada. Iniciando sesión...', 'success');
+    showToast('Sesión Iniciada', 'Accediendo al panel de PowerGo...', 'success');
     loginUser(newUser);
 }
 
